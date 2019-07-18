@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD45089E22E0159400C63C6E /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD45089D22E0159400C63C6E /* Entity.swift */; };
+		AD4508A222E0172400C63C6E /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4508A122E0172400C63C6E /* NetworkLayer.swift */; };
+		AD4508A622E01A6800C63C6E /* ScoreAnalysisProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4508A522E01A6800C63C6E /* ScoreAnalysisProtocols.swift */; };
+		AD4508A922E01A8500C63C6E /* ScoreAnalysisRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4508A822E01A8500C63C6E /* ScoreAnalysisRouter.swift */; };
 		AD49343122DF78260042D6D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49343022DF78260042D6D7 /* AppDelegate.swift */; };
-		AD49343322DF78260042D6D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49343222DF78260042D6D7 /* ViewController.swift */; };
+		AD49343322DF78260042D6D7 /* ScoreAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49343222DF78260042D6D7 /* ScoreAnalysisViewController.swift */; };
 		AD49343622DF78260042D6D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD49343422DF78260042D6D7 /* Main.storyboard */; };
 		AD49343922DF78260042D6D7 /* Craft_Demo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD49343722DF78260042D6D7 /* Craft_Demo.xcdatamodeld */; };
 		AD49343B22DF78270042D6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD49343A22DF78270042D6D7 /* Assets.xcassets */; };
@@ -27,9 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD45089D22E0159400C63C6E /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		AD4508A122E0172400C63C6E /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		AD4508A522E01A6800C63C6E /* ScoreAnalysisProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAnalysisProtocols.swift; sourceTree = "<group>"; };
+		AD4508A822E01A8500C63C6E /* ScoreAnalysisRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAnalysisRouter.swift; sourceTree = "<group>"; };
 		AD49342D22DF78260042D6D7 /* Craft_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Craft_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD49343022DF78260042D6D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AD49343222DF78260042D6D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD49343222DF78260042D6D7 /* ScoreAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAnalysisViewController.swift; sourceTree = "<group>"; };
 		AD49343522DF78260042D6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD49343822DF78260042D6D7 /* Craft_Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Craft_Demo.xcdatamodel; sourceTree = "<group>"; };
 		AD49343A22DF78270042D6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +66,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD45089F22E015A900C63C6E /* others */ = {
+			isa = PBXGroup;
+			children = (
+				AD49343422DF78260042D6D7 /* Main.storyboard */,
+				AD49343A22DF78270042D6D7 /* Assets.xcassets */,
+				AD49343C22DF78270042D6D7 /* LaunchScreen.storyboard */,
+			);
+			path = others;
+			sourceTree = "<group>";
+		};
+		AD4508A022E015BC00C63C6E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				AD49343722DF78260042D6D7 /* Craft_Demo.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		AD4508A322E019F600C63C6E /* Entity+Network */ = {
+			isa = PBXGroup;
+			children = (
+				AD45089D22E0159400C63C6E /* Entity.swift */,
+				AD4508A122E0172400C63C6E /* NetworkLayer.swift */,
+			);
+			path = "Entity+Network";
+			sourceTree = "<group>";
+		};
+		AD4508A422E01A4700C63C6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD49343222DF78260042D6D7 /* ScoreAnalysisViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD4508A722E01A6C00C63C6E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AD4508A522E01A6800C63C6E /* ScoreAnalysisProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		AD4508AA22E01A9000C63C6E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				AD4508A822E01A8500C63C6E /* ScoreAnalysisRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		AD49342422DF78260042D6D7 = {
 			isa = PBXGroup;
 			children = (
@@ -80,12 +139,13 @@
 			isa = PBXGroup;
 			children = (
 				AD49343022DF78260042D6D7 /* AppDelegate.swift */,
-				AD49343222DF78260042D6D7 /* ViewController.swift */,
-				AD49343422DF78260042D6D7 /* Main.storyboard */,
-				AD49343A22DF78270042D6D7 /* Assets.xcassets */,
-				AD49343C22DF78270042D6D7 /* LaunchScreen.storyboard */,
+				AD4508A722E01A6C00C63C6E /* Protocols */,
+				AD4508AA22E01A9000C63C6E /* Router */,
+				AD4508A422E01A4700C63C6E /* Views */,
+				AD4508A322E019F600C63C6E /* Entity+Network */,
+				AD45089F22E015A900C63C6E /* others */,
 				AD49343F22DF78270042D6D7 /* Info.plist */,
-				AD49343722DF78260042D6D7 /* Craft_Demo.xcdatamodeld */,
+				AD4508A022E015BC00C63C6E /* CoreData */,
 			);
 			path = Craft_Demo;
 			sourceTree = "<group>";
@@ -200,8 +260,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD49343322DF78260042D6D7 /* ViewController.swift in Sources */,
+				AD45089E22E0159400C63C6E /* Entity.swift in Sources */,
+				AD49343322DF78260042D6D7 /* ScoreAnalysisViewController.swift in Sources */,
+				AD4508A922E01A8500C63C6E /* ScoreAnalysisRouter.swift in Sources */,
 				AD49343922DF78260042D6D7 /* Craft_Demo.xcdatamodeld in Sources */,
+				AD4508A222E0172400C63C6E /* NetworkLayer.swift in Sources */,
+				AD4508A622E01A6800C63C6E /* ScoreAnalysisProtocols.swift in Sources */,
 				AD49343122DF78260042D6D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
