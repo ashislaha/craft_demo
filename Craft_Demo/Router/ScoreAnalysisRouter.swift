@@ -8,6 +8,21 @@
 
 import Foundation
 
-struct ScoreAnalysisRouter {
+class ScoreAnalysisRouter: ScoreAnalysisInteractorToRouter {
     
+    weak var viewController: ScoreAnalysisInteractorToViewProtocol? // weak hold to view
+    
+    static func create() -> ScoreAnalysisViewController {
+        let viewController = ScoreAnalysisViewController()
+        let router = ScoreAnalysisRouter()
+        let interactor = ScoreAnalysisInteractor()
+        
+        // binding
+        viewController.interactor = interactor
+        interactor.viewController = viewController
+        interactor.router = router
+        router.viewController = viewController
+        
+        return viewController
+    }
 }

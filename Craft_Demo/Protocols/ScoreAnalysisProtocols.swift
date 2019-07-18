@@ -16,7 +16,7 @@ protocol ScoreAnalysisViewToInteractorProtocol: class {
 
 protocol ScoreAnalysisInteractorToViewProtocol: class {
     var interactor: ScoreAnalysisViewToInteractorProtocol? {get set} // strong hold to interactor
-    func fetchedScoreAnalysis(_ model: ScoreAnalysis)
+    func fetchedScoreAnalysis(_ model: ScoreAnalysis?)
 }
 
 protocol ScoreAnalysisInteractorToRouter: class {
