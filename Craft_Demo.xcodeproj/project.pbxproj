@@ -19,6 +19,11 @@
 		AD49343B22DF78270042D6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD49343A22DF78270042D6D7 /* Assets.xcassets */; };
 		AD49343E22DF78270042D6D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD49343C22DF78270042D6D7 /* LaunchScreen.storyboard */; };
 		AD49344922DF78270042D6D7 /* Craft_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49344822DF78270042D6D7 /* Craft_DemoTests.swift */; };
+		AD9FC54322E14DBD00B89569 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FC54222E14DBD00B89569 /* ScoreView.swift */; };
+		AD9FC54522E14DC800B89569 /* ScoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FC54422E14DC800B89569 /* ScoreListView.swift */; };
+		AD9FC54722E14FB900B89569 /* UIView+Anchoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FC54622E14FB900B89569 /* UIView+Anchoring.swift */; };
+		AD9FC54B22E1512700B89569 /* ScoreRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FC54A22E1512700B89569 /* ScoreRangeTableViewCell.swift */; };
+		AD9FC54D22E16B9E00B89569 /* ScoreRangeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FC54C22E16B9E00B89569 /* ScoreRangeTableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,11 @@
 		AD49344422DF78270042D6D7 /* Craft_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Craft_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD49344822DF78270042D6D7 /* Craft_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Craft_DemoTests.swift; sourceTree = "<group>"; };
 		AD49344A22DF78270042D6D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD9FC54222E14DBD00B89569 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		AD9FC54422E14DC800B89569 /* ScoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreListView.swift; sourceTree = "<group>"; };
+		AD9FC54622E14FB900B89569 /* UIView+Anchoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchoring.swift"; sourceTree = "<group>"; };
+		AD9FC54A22E1512700B89569 /* ScoreRangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRangeTableViewCell.swift; sourceTree = "<group>"; };
+		AD9FC54C22E16B9E00B89569 /* ScoreRangeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRangeTableViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				AD49343222DF78260042D6D7 /* ScoreAnalysisViewController.swift */,
+				AD9FC54622E14FB900B89569 /* UIView+Anchoring.swift */,
+				AD9FC54822E150E700B89569 /* Score View */,
+				AD9FC54922E150EF00B89569 /* Score list view */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +181,24 @@
 				AD49344A22DF78270042D6D7 /* Info.plist */,
 			);
 			path = Craft_DemoTests;
+			sourceTree = "<group>";
+		};
+		AD9FC54822E150E700B89569 /* Score View */ = {
+			isa = PBXGroup;
+			children = (
+				AD9FC54222E14DBD00B89569 /* ScoreView.swift */,
+			);
+			path = "Score View";
+			sourceTree = "<group>";
+		};
+		AD9FC54922E150EF00B89569 /* Score list view */ = {
+			isa = PBXGroup;
+			children = (
+				AD9FC54422E14DC800B89569 /* ScoreListView.swift */,
+				AD9FC54A22E1512700B89569 /* ScoreRangeTableViewCell.swift */,
+				AD9FC54C22E16B9E00B89569 /* ScoreRangeTableViewHeader.swift */,
+			);
+			path = "Score list view";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,12 +304,17 @@
 			files = (
 				AD45089E22E0159400C63C6E /* Entity.swift in Sources */,
 				AD49343322DF78260042D6D7 /* ScoreAnalysisViewController.swift in Sources */,
+				AD9FC54D22E16B9E00B89569 /* ScoreRangeTableViewHeader.swift in Sources */,
+				AD9FC54322E14DBD00B89569 /* ScoreView.swift in Sources */,
 				AD4508A922E01A8500C63C6E /* ScoreAnalysisRouter.swift in Sources */,
 				AD4508AC22E0C80600C63C6E /* ScoreAnalysisInteractor.swift in Sources */,
 				AD49343922DF78260042D6D7 /* Craft_Demo.xcdatamodeld in Sources */,
 				AD4508A222E0172400C63C6E /* NetworkLayer.swift in Sources */,
+				AD9FC54722E14FB900B89569 /* UIView+Anchoring.swift in Sources */,
+				AD9FC54B22E1512700B89569 /* ScoreRangeTableViewCell.swift in Sources */,
 				AD4508A622E01A6800C63C6E /* ScoreAnalysisProtocols.swift in Sources */,
 				AD49343122DF78260042D6D7 /* AppDelegate.swift in Sources */,
+				AD9FC54522E14DC800B89569 /* ScoreListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,10 +12,27 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     
     var interactor: ScoreAnalysisViewToInteractorProtocol?  // strong hold to interactor
     
+    // ScoreListView
+    private let scoreListView: ScoreListView = {
+        let view = ScoreListView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    private func layoutSubViews() {
+        [scoreListView].forEach{ view.addSubview($0) }
+        
+        scoreListView.anchors(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        scoreListView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
+    }
+    
+    
     // MARK:- view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        layoutSubViews()
         view.backgroundColor = .lightGray
         title = "Score Analysis"
         interactor?.fetchScoreAnalysis()
@@ -38,7 +55,7 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     
     // MARK:- Fetched score analysis
     func fetchedScoreAnalysis(_ model: ScoreAnalysis?) {
-        print(model)
+        scoreListView.model = model
     }
 }
 
