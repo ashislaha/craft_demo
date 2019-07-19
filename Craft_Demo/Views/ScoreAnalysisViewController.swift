@@ -12,6 +12,15 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     
     var interactor: ScoreAnalysisViewToInteractorProtocol?  // strong hold to interactor
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .blue
+        activityIndicator.tintColor = .yellow
+        return activityIndicator
+    }()
+    
     // ScoreListView
     private let scoreListView: ScoreListView = {
         let view = ScoreListView()
@@ -22,9 +31,12 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     
     private func layoutSubViews() {
         [scoreListView].forEach{ view.addSubview($0) }
+        scoreListView.addSubview(activityIndicator)
+        activityIndicator.anchors(centerX: scoreListView.centerXAnchor, centerY: scoreListView.centerYAnchor)
         
         scoreListView.anchors(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
         scoreListView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
+        
     }
     
     
@@ -35,6 +47,7 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         layoutSubViews()
         view.backgroundColor = .lightGray
         title = "Score Analysis"
+        activityIndicator.startAnimating()
         interactor?.fetchScoreAnalysis()
     }
     
@@ -55,6 +68,7 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     
     // MARK:- Fetched score analysis
     func fetchedScoreAnalysis(_ model: ScoreAnalysis?) {
+        activityIndicator.stopAnimating()
         scoreListView.model = model
     }
 }
