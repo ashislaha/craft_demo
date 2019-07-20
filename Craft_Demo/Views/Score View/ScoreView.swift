@@ -18,13 +18,14 @@ class ScoreView: UIView {
     
     private var trackPathLayer : CAShapeLayer!
     private var fillPathLayer  : CAShapeLayer!
+    private let fillColor = UIColor(red: 230/255.0, green: 180/255.0, blue: 90/255.0, alpha: 1)
     
     //MARK: downloadText
     private let currentScore : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false // enable auto layout
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .yellow
+        label.textColor = UIColor(red: 230/255.0, green: 180/255.0, blue: 90/255.0, alpha: 1)
         label.textAlignment = .center
         label.text = "820"
         return label
@@ -42,40 +43,53 @@ class ScoreView: UIView {
         layoutSetup()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if trackPathLayer == nil && fillPathLayer == nil {
+            trackPathLayer = createShapeLayer(fillColor: .clear, strokeColor: .lightGray)
+            fillPathLayer = createShapeLayer(fillColor: .clear, strokeColor: fillColor)
+            layer.addSublayer(trackPathLayer)
+            layer.addSublayer(fillPathLayer)
+            
+            trackPathLayer.strokeEnd = 1 // to make it visible
+            
+        } else { // update the position
+            let centerBounds = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
+            trackPathLayer.position = centerBounds
+            fillPathLayer.position = centerBounds
+        }
+    }
+    
     private func layoutSetup() {
+        backgroundColor = .white
         addSubview(currentScore)
         currentScore.anchors(centerX: centerXAnchor, centerY: centerYAnchor)
-        
-        trackPathLayer = createShapeLayer(fillColor: .red, strokeColor: .green)
-        fillPathLayer = createShapeLayer(fillColor: .blue, strokeColor: .orange)
-        layer.addSublayer(trackPathLayer)
-        layer.addSublayer(fillPathLayer)
-        
-        trackPathLayer.strokeEnd = 1 // to make it visible
     }
     
     private func animatePulsatingLayer() {
         guard let score = score else { return }
-        UIView.animate(withDuration: 1.0) { [weak self] in
+        UIView.animate(withDuration: 2.0) { [weak self] in
             self?.fillPathLayer.strokeEnd = CGFloat(score/1000.0)
         }
     }
     
     //MARK: ShapeLayer Setups
     private func createShapeLayer(fillColor : UIColor, strokeColor : UIColor) -> CAShapeLayer {
-        let radius: CGFloat = 100.0
+        let radius: CGFloat = 80.0
         let startAngle: CGFloat = CGFloat.pi/2 // 90 degree at positive side
         let endAngle: CGFloat = 0 // 0 degree
+        let centerBounds = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         
         let layer = CAShapeLayer()
         let bezierPath = UIBezierPath(arcCenter: .zero, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         layer.path = bezierPath.cgPath
         layer.strokeColor = strokeColor.cgColor
         layer.fillColor = fillColor.cgColor
-        layer.lineWidth = 20
+        layer.lineWidth = 30
         layer.strokeEnd = 0 // animate this property
         layer.lineCap = CAShapeLayerLineCap.round // to shape the front while stroking
-        layer.position = center
+        layer.position = centerBounds
         return layer
     }
 }
