@@ -54,7 +54,6 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         return view
     }()
     
-    
     private func layoutSubViews() {
         [scoreListView, scoreView].forEach{ view.addSubview($0) }
         scoreListView.addSubview(activityIndicator)
@@ -96,6 +95,7 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         title = "Score Analysis"
         activityIndicator.startAnimating()
         interactor?.fetchScoreAnalysis()
+        scoreListView.delegate = self
     }
     
     //MARK:- Rotate Device
@@ -133,6 +133,13 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         if let myScore = model?.myScore, let score = Double(myScore) {
             scoreView.score = score
         }
+    }
+}
+
+extension ScoreAnalysisViewController: ScoreListViewDelegate {
+    func refresh() {
+        activityIndicator.startAnimating()
+        interactor?.fetchScoreAnalysis()
     }
 }
 

@@ -8,18 +8,36 @@
 
 import UIKit
 
+protocol ScoreListViewDelegate: class {
+    func refresh()
+}
+
 class ScoreListView: UIView {
     
     public var model: ScoreAnalysis? {
         didSet {
+            refreshControl.endRefreshing()
             tableView.reloadData()
         }
     }
+    
+    public weak var delegate: ScoreListViewDelegate?
     
     // private properties
     private var tableView: UITableView!
     private let cellId = "cellId"
     private let headerId = "headerId"
+    
+    // RefreshControl
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    @objc private func refresh() {
+        delegate?.refresh()
+    }
     
     // init
     override init(frame: CGRect) {
@@ -47,6 +65,7 @@ class ScoreListView: UIView {
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = false
+        tableView.refreshControl = refreshControl // pull to refresh
     }
 }
 
