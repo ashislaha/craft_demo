@@ -83,9 +83,7 @@ class ScoreView: UIView {
     
     private func animatePulsatingLayer() {
         guard let score = score else { return }
-        UIView.animate(withDuration: 2.0) { [weak self] in
-            self?.fillPathLayer.strokeEnd = CGFloat(score/1000.0)
-        }
+        fillPathLayer.strokeEnd = CGFloat(score/1000.0)
     }
     
     //MARK: ShapeLayer Setups

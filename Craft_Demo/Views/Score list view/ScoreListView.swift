@@ -61,6 +61,7 @@ extension ScoreListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? ScoreRangeTableViewCell else { return UITableViewCell() }
         
+        cell.currentScore = model?.myScore
         cell.model = model?.scores[indexPath.row]
         return cell
     }

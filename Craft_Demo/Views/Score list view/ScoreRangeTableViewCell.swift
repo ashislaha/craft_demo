@@ -15,6 +15,7 @@ class ScoreRangeTableViewCell: UITableViewCell {
             updateUI()
         }
     }
+    public var currentScore: String?
     
     private let scoreLabel: UILabel = {
         let label = UILabel()
@@ -30,6 +31,7 @@ class ScoreRangeTableViewCell: UITableViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 750), for: .horizontal) // lower content compression resistance
+        view.layer.cornerRadius = 5.0
         return view
     }()
     
@@ -41,6 +43,9 @@ class ScoreRangeTableViewCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
+    
+    private var arrowShapeLayer: CAShapeLayer!
+    private var textLayer: CATextLayer!
     
     // Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -78,5 +83,50 @@ class ScoreRangeTableViewCell: UITableViewCell {
         
         rangeValueLabel.text = model.lowerRange + "-" + model.upperRange
         scoreLabel.text = model.percentage
+        shouldAddArrowViewLayer()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        shouldAddArrowViewLayer()
+    }
+    
+    // arrow view layer
+    private func shouldAddArrowViewLayer() {
+        
+        arrowShapeLayer?.removeFromSuperlayer()
+        textLayer?.removeFromSuperlayer()
+        
+        guard let currentScoreStr = currentScore, let currentScore = Double(currentScoreStr), let scoreModel = model,
+            let lowerRange = Double(scoreModel.lowerRange), let upperRange = Double(scoreModel.upperRange),
+            lowerRange <= currentScore, currentScore <= upperRange
+            else { return }
+        
+        // add a arrow layer to rangeView
+        let width: CGFloat = 100
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: rangeView.frame.size.width - 20, y: 10))
+        bezierPath.addLine(to: CGPoint(x: rangeView.frame.size.width - width, y: 10))
+        bezierPath.addLine(to: CGPoint(x: rangeView.frame.size.width - width - 10, y: rangeView.frame.size.height / 2))
+        bezierPath.addLine(to: CGPoint(x: rangeView.frame.size.width - width, y: rangeView.frame.size.height - 10))
+        bezierPath.addLine(to: CGPoint(x: rangeView.frame.size.width - 20, y: rangeView.frame.size.height - 10))
+        bezierPath.close()
+        
+        arrowShapeLayer = CAShapeLayer()
+        arrowShapeLayer.path = bezierPath.cgPath
+        arrowShapeLayer.fillColor = UIColor.white.cgColor
+        arrowShapeLayer.strokeColor = UIColor.purple.cgColor
+        arrowShapeLayer.lineWidth = 0.5
+        rangeView.layer.addSublayer(arrowShapeLayer)
+        
+        // a text layer to rangeview
+        textLayer = CATextLayer()
+        textLayer.string = currentScoreStr
+        textLayer.fontSize = 15
+        textLayer.alignmentMode = .center
+        textLayer.foregroundColor = UIColor.black.cgColor
+        textLayer.frame = CGRect(x: rangeView.frame.size.width - width, y: 12, width: width - 20, height: rangeView.frame.size.height / 2)
+        rangeView.layer.addSublayer(textLayer)
     }
 }
