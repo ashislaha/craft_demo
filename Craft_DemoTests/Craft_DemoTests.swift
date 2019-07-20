@@ -30,5 +30,46 @@ class Craft_DemoTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+}
 
+extension Craft_DemoTests {
+    
+    // GET call
+    func testGetData() {
+        
+        let successUrl = "https://httpbin.org/get"
+        // NetworkLayer must return some value, successblock must execute
+        NetworkLayer.getData(urlString: successUrl, successBlock: { (response) in
+            XCTAssertNotNil(response)
+        }, failed: { (error) in
+            XCTAssertNil(error)
+        })
+        
+        
+        let failureUrl = "http://httpbin.org/get1"
+        // NetworkLayer must return error because the end-point is invalid, error must execute
+        NetworkLayer.getData(urlString: failureUrl, successBlock: { (response) in
+            XCTAssertNil(response)
+        }, failed: { (error) in
+            XCTAssertNotNil(error)
+        })
+    }
+    
+    // update(POST/PUT/DELETE) call
+    func testUpdateData() {
+        let successUrl = "https://httpbin.org/post"
+        let bodyDict = ["name": "ashis"]
+        NetworkLayer.postData(urlString: successUrl, bodyDict: bodyDict, requestType: .POST, successBlock: { (response) in
+            XCTAssertNotNil(response)
+        }) { (error) in
+            XCTAssertNil(error)
+        }
+        let failureUrl = "http://httpbin.org/post1"
+        NetworkLayer.postData(urlString: failureUrl, bodyDict: bodyDict, requestType: .POST, successBlock: { (response) in
+            XCTAssertNil(response)
+        }) { (error) in
+            XCTAssertNotNil(error)
+        }
+    }
+    
 }
