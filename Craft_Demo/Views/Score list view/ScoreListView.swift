@@ -46,6 +46,7 @@ class ScoreListView: UIView {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
     }
 }
 
