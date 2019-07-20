@@ -103,7 +103,8 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         super.viewWillTransition(to: size, with: coordinator)
         
         var isPortrait = false
-        switch UIApplication.shared.statusBarOrientation {
+        let orientation = UIDevice.current.orientation
+        switch orientation {
         case .portrait, .portraitUpsideDown: isPortrait = true
         default: isPortrait = false
         }

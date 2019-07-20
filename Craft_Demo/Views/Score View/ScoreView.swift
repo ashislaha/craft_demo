@@ -12,6 +12,7 @@ class ScoreView: UIView {
     
     public var score: Double? {
         didSet {
+            currentScore.text = "\(score ?? 0)"
             animatePulsatingLayer()
         }
     }
@@ -27,10 +28,17 @@ class ScoreView: UIView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = UIColor(red: 230/255.0, green: 180/255.0, blue: 90/255.0, alpha: 1)
         label.textAlignment = .center
-        label.text = "820"
         return label
     }()
     
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        label.textColor = .gray
+        label.textAlignment = .center
+        return label
+    }()
     
     // init
     override init(frame: CGRect) {
@@ -63,8 +71,14 @@ class ScoreView: UIView {
     
     private func layoutSetup() {
         backgroundColor = .white
-        addSubview(currentScore)
+        [currentScore, dateLabel].forEach { addSubview($0) }
         currentScore.anchors(centerX: centerXAnchor, centerY: centerYAnchor)
+        dateLabel.anchors(bottom: bottomAnchor, centerX: centerXAnchor)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd,yyyy"
+        let dateString = dateFormatter.string(from: Date())
+        dateLabel.text = "As of \(dateString)"
     }
     
     private func animatePulsatingLayer() {
