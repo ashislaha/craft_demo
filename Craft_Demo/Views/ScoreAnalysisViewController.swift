@@ -83,7 +83,7 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         
         // portrait mode
         scoreListLeadingAnchorToSuper = scoreListView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
-        activeConstraints(isPortrait: UIApplication.shared.statusBarOrientation == .portrait)
+        activeConstraints(isPortrait: UIDevice.current.orientation == .portrait)
     }
     
     
