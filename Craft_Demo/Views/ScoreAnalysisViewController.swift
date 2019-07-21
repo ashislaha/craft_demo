@@ -82,6 +82,11 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
         
         // portrait mode
         scoreListLeadingAnchorToSuper = scoreListView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+        
+        let commonConstraints: [NSLayoutConstraint] = [
+            scoreViewTopAnchorToSuper, scoreViewLeadingAnchorToSuper, scoreListTrailingAnchorToSuper, scoreListBottomAnchorToSuper
+        ]
+        NSLayoutConstraint.activate(commonConstraints)
         activeConstraints(isPortrait: UIDevice.current.orientation == .portrait)
     }
     
@@ -112,17 +117,24 @@ class ScoreAnalysisViewController: UIViewController, ScoreAnalysisInteractorToVi
     }
     
     private func activeConstraints(isPortrait: Bool) {
-        let commonConstraints: [NSLayoutConstraint] = [
-            scoreViewTopAnchorToSuper, scoreViewLeadingAnchorToSuper, scoreListTrailingAnchorToSuper, scoreListBottomAnchorToSuper
+        
+        let portraitNecessaryConstraints = [
+            scoreViewBottomAnchorToScoreListView, scoreViewTrailingAnchorToSuperView, scoreViewHeightConstraint, scoreListLeadingAnchorToSuper
         ]
-        NSLayoutConstraint.activate(commonConstraints)
+        let landScapeNecessaryConstraints = [
+            scoreViewBottomAnchorToSuper, scoreViewTrailingAnchorToScoreListView, scoreListTopAnchorToSuper, scoreListWidthAnchor
+        ]
         
-        // activate these contraints for portrait - vice versa for landscape (deactivate)
-        [scoreViewBottomAnchorToScoreListView, scoreViewTrailingAnchorToSuperView, scoreViewHeightConstraint, scoreListLeadingAnchorToSuper].forEach { $0?.isActive = isPortrait }
-        
-        // deactivate these contraints for portrait - vice versa for landscape (active)
-        [scoreViewBottomAnchorToSuper, scoreViewTrailingAnchorToScoreListView, scoreListTopAnchorToSuper, scoreListWidthAnchor].forEach {
-            $0?.isActive = !isPortrait
+        if isPortrait {
+            // deactive
+            landScapeNecessaryConstraints.forEach{ $0?.isActive = false }
+            // activate
+            portraitNecessaryConstraints.forEach { $0?.isActive = true }
+        } else {
+            // deactive
+            portraitNecessaryConstraints.forEach{ $0?.isActive = false }
+            // active
+            landScapeNecessaryConstraints.forEach{ $0?.isActive = true }
         }
     }
     
