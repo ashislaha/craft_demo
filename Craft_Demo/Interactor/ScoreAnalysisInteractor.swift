@@ -22,7 +22,9 @@ class ScoreAnalysisInteractor: ScoreAnalysisViewToInteractorProtocol {
         NetworkLayer.getData(urlString: Constants.url, successBlock: { [weak self] (data) in
             
             guard let data = data as? Data else {
-                self?.viewController?.fetchedScoreAnalysis(nil)
+                DispatchQueue.main.async {
+                   self?.viewController?.fetchedScoreAnalysis(nil)
+                }
                 return
             }
             do {
@@ -32,10 +34,14 @@ class ScoreAnalysisInteractor: ScoreAnalysisViewToInteractorProtocol {
                 }
             } catch let error {
                 print("Error in decoding the json:", error)
-                self?.viewController?.fetchedScoreAnalysis(nil)
+                DispatchQueue.main.async {
+                    self?.viewController?.fetchedScoreAnalysis(nil)
+                }
             }
         }) { [weak self] (error) in
-            self?.viewController?.fetchedScoreAnalysis(nil)
+            DispatchQueue.main.async {
+                self?.viewController?.fetchedScoreAnalysis(nil)
+            }
         }
     }
 }
