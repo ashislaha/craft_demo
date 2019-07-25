@@ -13,7 +13,7 @@ class ScoreView: UIView {
     public var score: Double? {
         didSet {
             currentScore.text = "\(score ?? 0)"
-            animatePulsatingLayer()
+            updateScore()
         }
     }
     
@@ -81,7 +81,7 @@ class ScoreView: UIView {
         dateLabel.text = "As of \(dateString)"
     }
     
-    private func animatePulsatingLayer() {
+    private func updateScore() {
         guard let score = score else { return }
         fillPathLayer.strokeEnd = CGFloat(score/1000.0)
     }
